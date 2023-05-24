@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+    <!-- 1 დავალება -->პირველი დავალება  <br><br><br>
+
+    <div id="text">hello world!</div>
+    <button id="button">remove text</button>
+
+    <br><br><br><br><br>
+    <!-- 3 დავალება -->
+    <div class="quiz" style="border: 3px solid black; width: 50%;">მესამე დავალება(ბონუსით)
+        <div class="first">
+            <p>5 + 9 = ?</p><br>
+            <div>
+                <button>10</button>
+                <button>21</button>
+                <button>4</button>
+                <button>14</button>
+            </div>
+        </div>
+        <div class="second">
+            <p>10 * 4</p><br>
+            <div>
+                <button>31</button>
+                <button>20</button>
+                <button>40</button>
+                <button>60</button>
+            </div>
+        </div>
+        <!-- ბონუს დავალება --> <br><br>
+        <span>ქულა : <p class="scores" style="display: inline;"></p></span>
+    </div>
+    <br><br><br>
+    <!-- 2 დავალება -->
+    მეორე დავალება
+
+
+    <script>
+        //1 დავალება
+        const div = document.getElementById('text')
+        const btn = document.getElementById('button')
+        btn.addEventListener('click',() => {
+            div.style.display = 'none'
+        })
+
+        //2 დავალება
+        const div2 = document.createElement('div')
+        const body = document.querySelector('body')
+        const h2 = document.createElement('h2')
+        const a = document.createElement('a')
+        
+        a.href = '#'
+        a.textContent = 'Go to profile'
+        h2.textContent = 'Gandalf'
+
+        
+        div2.id = 'card'
+        div2.append(h2,a)
+        body.append(div2)
+
+        //3 დავალება
+        const firstDiv = document.querySelector('.first')
+        const firstQuestion = firstDiv.querySelector('p')
+        const firstAns = firstDiv.querySelectorAll('button')
+        const secondDiv = document.querySelector('.second')
+        const secondQuestion = secondDiv.querySelector('p')
+        const secondAns = secondDiv.querySelectorAll('button')
+        const scores = document.querySelector('.scores')
+
+        scores.textContent = 0
+        secondDiv.style.display = 'none'
+        firstAns.forEach((el) => {
+            el.addEventListener('click', () => {
+                if(el.textContent === '14'){
+                    el.style.backgroundColor = 'green'
+                    //ბონუს დავალება
+                    scores.textContent++
+                    setTimeout(() => {
+                        firstDiv.style.display = 'none'
+                        secondDiv.style.display = 'block'
+                    }, 1000);
+                }else{
+                    el.style.backgroundColor = 'red';
+                    setTimeout(() => {
+                        firstDiv.style.display = 'none'
+                        secondDiv.style.display = 'block'
+                    }, 1000);
+                }
+            })
+        })
+
+        secondAns.forEach((el) => {
+            el.addEventListener('click', () => {
+                if(el.textContent === '40'){
+                    el.style.backgroundColor = 'green'
+                    scores.textContent++
+                    setTimeout(() => {
+                        secondDiv.style.display = 'none'
+                    }, 1000);
+                }else{
+                    el.style.backgroundColor = 'red'
+                    setTimeout(() => {
+                        secondDiv.style.display = 'none'
+                    }, 1000);
+                }
+        })
+        })
+        
+
+    </script>
+</body>
+</html>
